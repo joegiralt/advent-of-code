@@ -11,3 +11,4 @@ output
 
 # Where I put my AOC cookie
 purescript-aoc/.env
+.elixir_ls
