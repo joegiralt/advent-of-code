@@ -1,0 +1,20 @@
+{
+  "name": "purescript-adventofcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "purescript": "^0.13.8",
+    "spago": "^0.17.0"
+  },
+  "dependencies": {
+    "bignumber.js": "^9.0.1",
+    "dotenv": "^8.2.0",
+    "request": "^2.88.2"
+  }
+}
