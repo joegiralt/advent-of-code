@@ -30,11 +30,7 @@ defmodule AdventOfCode.Year2022.Day01 do
     |> Enum.sum()
   end
 
-  defp max([x]), do: x
-  defp max([x | rest]), do: max(rest) |> Kernel.max(x)
 end
-
-AdventOfCode.Year2022.Day01
 
 Benchee.run(
   %{
