@@ -1,5 +1,8 @@
-
 defmodule AdventOfCode.Parsers.Satisfy do
+  @moduledoc """
+    A Parser that takes a term if and checks if it satisfies
+    the acceptor's value
+  """
   def satisfy(parser, acceptor) do
     fn input ->
       with {:ok, term, rest} <- parser.(input) do

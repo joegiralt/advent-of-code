@@ -1,4 +1,8 @@
 defmodule AdventOfCode.Parsers.Sequence do
+  @moduledoc """
+    A Parser that takes a term if and checks if it satisfies
+    a specific sequence of terms
+  """
   def sequence(parsers) do
     fn input ->
       case parsers do

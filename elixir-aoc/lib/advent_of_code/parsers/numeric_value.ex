@@ -1,4 +1,9 @@
 defmodule AdventOfCode.Parsers.NumericValue do
+  @moduledoc """
+    A Parser that checks if a series of numerical allowed characters
+    are a numerical value
+  """
+
   import AdventOfCode.Parsers.Satisfy
   import AdventOfCode.Parsers.Many
   import AdventOfCode.Parsers.NumericIdChar

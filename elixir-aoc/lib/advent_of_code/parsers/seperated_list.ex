@@ -1,4 +1,8 @@
 defmodule AdventOfCode.Parsers.SeperatedList do
+  @moduledoc """
+    A Parser that takes terms and returns
+    a comma seperated list of terms
+  """
   import AdventOfCode.Parsers.Many
   import AdventOfCode.Parsers.Map
   import AdventOfCode.Parsers.Sequence

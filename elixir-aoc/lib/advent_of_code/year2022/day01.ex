@@ -1,4 +1,8 @@
 defmodule AdventOfCode.Year2022.Day01 do
+  @moduledoc """
+    A Day 01 Solution.
+  """
+
   alias AdventOfCode.Year2022.Day01Parser, as: ParseInput
   import AdventOfCode.Utils.Max
 
@@ -29,12 +33,9 @@ defmodule AdventOfCode.Year2022.Day01 do
     calories
     |> Enum.sum()
   end
-
 end
 
-Benchee.run(
-  %{
-    "Day 1, Part 1" => fn -> AdventOfCode.Year2022.Day01 end,
-    "Day 1, Part 2" => fn -> AdventOfCode.Year2022.Day02 end,
-  }
-)
+Benchee.run(%{
+  "Day 1, Part 1" => fn -> AdventOfCode.Year2022.Day01 end,
+  "Day 1, Part 2" => fn -> AdventOfCode.Year2022.Day02 end
+})

@@ -1,5 +1,7 @@
-
 defmodule AdventOfCode.Parsers.NewLine do
+  @moduledoc """
+    A Parser that checks if a term is a new_line
+  """
   import AdventOfCode.Parsers.Satisfy
   import AdventOfCode.Parsers.Char
 

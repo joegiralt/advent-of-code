@@ -1,4 +1,8 @@
 defmodule AdventOfCode.Parsers.Choice do
+  @moduledoc """
+    A Parser that chooses between two, `OR`
+  """
+
   def choice(parsers) do
     fn input ->
       case parsers do
