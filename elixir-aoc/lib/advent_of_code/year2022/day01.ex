@@ -33,3 +33,12 @@ defmodule AdventOfCode.Year2022.Day01 do
   defp max([x]), do: x
   defp max([x | rest]), do: max(rest) |> Kernel.max(x)
 end
+
+AdventOfCode.Year2022.Day01
+
+Benchee.run(
+  %{
+    "Day 1, Part 1" => fn -> AdventOfCode.Year2022.Day01 end,
+    "Day 1, Part 2" => fn -> AdventOfCode.Year2022.Day02 end,
+  }
+)
