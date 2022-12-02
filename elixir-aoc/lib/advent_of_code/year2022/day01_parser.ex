@@ -1,9 +1,7 @@
 defmodule AdventOfCode.Year2022.Day01Parser do
-
   @moduledoc """
     A Parser Combinator for day 01 Solution.
   """
-  
   import AdventOfCode.Parsers.NewLine
   import AdventOfCode.Parsers.Map
   import AdventOfCode.Parsers.NumericValue

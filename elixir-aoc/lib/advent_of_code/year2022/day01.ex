@@ -2,12 +2,11 @@ defmodule AdventOfCode.Year2022.Day01 do
   @moduledoc """
     A Day 01 Solution.
   """
-
-  alias AdventOfCode.Year2022.Day01Parser, as: ParseInput
+  alias AdventOfCode.Year2022.Day01Parser
   import AdventOfCode.Utils.Max
 
   def part_1() do
-    {:ok, ast, _} = ParseInput.run()
+    {:ok, ast, _} = Day01Parser.run()
 
     ast
     |> Enum.map(&calories_per_elf/1)
@@ -15,7 +14,7 @@ defmodule AdventOfCode.Year2022.Day01 do
   end
 
   def part_2() do
-    {:ok, ast, _} = ParseInput.run()
+    {:ok, ast, _} = Day01Parser.run()
 
     ast
     |> Enum.map(&calories_per_elf/1)
