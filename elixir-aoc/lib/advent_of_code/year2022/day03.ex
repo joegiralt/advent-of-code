@@ -2,6 +2,7 @@ defmodule AdventOfCode.Year2022.Day03 do
   @moduledoc """
     A Day 03 Solution.
   """
+  import AdventOfCode.Utils.IntersectionAll
   alias AdventOfCode.Year2022.Day03Parser
 
   @priority_mapping (Enum.zip(
@@ -35,7 +36,8 @@ defmodule AdventOfCode.Year2022.Day03 do
   end
 
   def find_intersections_in_elf_group([a, b, c]) do
-    MapSet.intersection(MapSet.intersection(a, b), c)
+    [a, b, c]
+    |> intersection_all()
     |> Enum.to_list()
   end
 
