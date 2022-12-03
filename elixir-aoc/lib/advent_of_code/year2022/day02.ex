@@ -1,6 +1,6 @@
 defmodule AdventOfCode.Year2022.Day02 do
   @moduledoc """
-    A normal Parser for day 02 Solution.
+    A Day 02 Solution.
   """
   alias AdventOfCode.Year2022.Day02Parser
 
