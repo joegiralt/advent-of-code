@@ -13,12 +13,12 @@ defmodule AdventOfCode.Year2022.Day04Parser do
 
       [
         {
-          Integer.parse(x) |> elem(0),
-          Integer.parse(y) |> elem(0)
+          x |> Integer.parse() |> elem(0),
+          y |> Integer.parse() |> elem(0)
         },
         {
-          Integer.parse(c) |> elem(0),
-          Integer.parse(d) |> elem(0)
+          c |> Integer.parse() |> elem(0),
+          d |> Integer.parse() |> elem(0)
         }
       ]
       |> Enum.sort()
