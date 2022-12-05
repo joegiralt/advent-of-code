@@ -1,5 +1,7 @@
 defmodule AdventOfCode.Utils.Matrix do
-  require IEx
+  @moduledoc """
+    A small Matrix helper library.
+  """
 
   defstruct data: nil, width: nil, depth: nil
 

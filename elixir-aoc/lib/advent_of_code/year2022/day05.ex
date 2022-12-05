@@ -3,7 +3,6 @@ defmodule AdventOfCode.Year2022.Day05 do
     A Day 05 Solution.
   """
   alias AdventOfCode.Year2022.Day05Parser
-  alias AdventOfCode.Year2022.Day05Parser.Command
 
   def part_1 do
     Day05Parser.run()
@@ -20,40 +19,50 @@ defmodule AdventOfCode.Year2022.Day05 do
   def grab_top_cargo(stacks) do
     stacks
     |> Map.values()
-    |> Enum.map_join("", fn [head | _tail] -> head end)
+    |> Enum.map_join("", &List.first/1)
   end
 
-  def reduce_cmds({stacks, []}, _part), do: stacks
+  def reduce_cmds({cargo_stacks, []}, _part), do: cargo_stacks
 
-  def reduce_cmds({stacks, commands}, part) do
+  def reduce_cmds({cargo_stacks, commands}, part) do
     [cmd | rest_of_commands] = commands
 
-    {modded_stack, items_to_move} = take(stacks[cmd.from], [], cmd.move)
-    added_to_stack = add(part, items_to_move, stacks[cmd.to])
+    {modded_cargo, cargo_to_move} =
+      take(cargo_stacks[cmd.from_cargo_location], [], cmd.amount_to_move)
 
-    newly_mapped_stacks =
-      stacks
-      |> Map.update(cmd.from, modded_stack, fn _ -> modded_stack end)
-      |> Map.update(cmd.to, added_to_stack, fn _ -> added_to_stack end)
+    cargo_to_stack = add(part, cargo_to_move, cargo_stacks[cmd.to_cargo_location])
 
-    reduce_cmds({newly_mapped_stacks, rest_of_commands}, part)
+    newly_mapped_cargo_stacks =
+      cargo_stacks
+      |> Map.update(cmd.from_cargo_location, modded_cargo, fn _ -> modded_cargo end)
+      |> Map.update(cmd.to_cargo_location, cargo_to_stack, fn _ -> cargo_to_stack end)
+
+    reduce_cmds({newly_mapped_cargo_stacks, rest_of_commands}, part)
   end
 
-  def take(list, result, 0), do: {list, result}
+  # Takes items off of cargo stack
+  def take(modded_cargo, cargo_to_move, 0), do: {modded_cargo, cargo_to_move}
 
-  def take(list, result, number) do
-    [head | tail] = list
-    take(tail, [head | result], number - 1)
+  def take([top_cargo_item | rest_of_cargo] = _modded_cargo, cargo_to_move, amount_left_to_move) do
+    take(
+      rest_of_cargo,
+      [top_cargo_item | cargo_to_move],
+      amount_left_to_move - 1
+    )
   end
 
-  def add(_, [], stack), do: stack
+  # Adds new items to a cargo stack depending on crane type
+  def add(_part, [], cargo_stack), do: cargo_stack
 
-  def add(:part_1, new_items, stack) do
-    new_items ++ stack
+  def add(:part_1, new_cargo, cargo_stack) do
+    new_cargo ++ cargo_stack
   end
 
-  def add(:part_2, new_items, stack) do
-    [new_item | tail] = new_items
-    add(:part_2, tail, [new_item | stack])
+  def add(:part_2, [new_cargo_item | rest_of_new_cargo] = _new_cargo, cargo_stack) do
+    add(
+      :part_2,
+      rest_of_new_cargo,
+      [new_cargo_item | cargo_stack]
+    )
   end
 end

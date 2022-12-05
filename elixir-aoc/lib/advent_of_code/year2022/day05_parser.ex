@@ -6,13 +6,13 @@ defmodule AdventOfCode.Year2022.Day05Parser do
     @moduledoc """
       A module to make structs for commands
     """
-    defstruct [:move, :from, :to]
+    defstruct [:amount_to_move, :from_cargo_location, :to_cargo_location]
 
     def new(["move", move, "from", from, "to", to]) do
       %Command{
-        move: move |> Integer.parse() |> elem(0),
-        from: from |> Integer.parse() |> elem(0),
-        to: to |> Integer.parse() |> elem(0)
+        amount_to_move: move |> Integer.parse() |> elem(0),
+        from_cargo_location: from |> Integer.parse() |> elem(0),
+        to_cargo_location: to |> Integer.parse() |> elem(0)
       }
     end
   end
