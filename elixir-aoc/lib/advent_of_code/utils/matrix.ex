@@ -29,14 +29,16 @@ defmodule AdventOfCode.Utils.Matrix do
     Enum.reduce(points, two_dee, fn {{row, col} = _point, val}, acc ->
       acc
       |> Enum.with_index()
-      |> Enum.map(fn {list, idx} ->
-        if idx == row do
-          list |> List.update_at(col, fn _ -> val end)
-        else
-          list
-        end
-      end)
+      |> Enum.map(&list_matrix_from_grid_helper(&1, row, col, val))
     end)
     |> M.new()
+  end
+
+  defp list_matrix_from_grid_helper({list, idx}, row, col, val) do
+    if idx == row do
+      list |> List.update_at(col, fn _ -> val end)
+    else
+      list
+    end
   end
 end

@@ -1,4 +1,7 @@
 defmodule AdventOfCode.Year2022.Day05 do
+  @moduledoc """
+    A Day 05 Solution.
+  """
   alias AdventOfCode.Year2022.Day05Parser
   alias AdventOfCode.Year2022.Day05Parser.Command
 
@@ -17,14 +20,13 @@ defmodule AdventOfCode.Year2022.Day05 do
   def grab_top_cargo(stacks) do
     stacks
     |> Map.values()
-    |> Enum.map(fn [head | tail] -> head end)
-    |> Enum.join("")
+    |> Enum.map_join("", fn [head | _tail] -> head end)
   end
 
-  def reduce_cmds({stacks, []}, part), do: stacks
+  def reduce_cmds({stacks, []}, _part), do: stacks
 
   def reduce_cmds({stacks, commands}, part) do
-    [cmd | tail] = commands
+    [cmd | rest_of_commands] = commands
 
     {modded_stack, items_to_move} = take(stacks[cmd.from], [], cmd.move)
     added_to_stack = add(part, items_to_move, stacks[cmd.to])
@@ -34,7 +36,7 @@ defmodule AdventOfCode.Year2022.Day05 do
       |> Map.update(cmd.from, modded_stack, fn _ -> modded_stack end)
       |> Map.update(cmd.to, added_to_stack, fn _ -> added_to_stack end)
 
-    reduce_cmds({newly_mapped_stacks, tail}, part)
+    reduce_cmds({newly_mapped_stacks, rest_of_commands}, part)
   end
 
   def take(list, result, 0), do: {list, result}

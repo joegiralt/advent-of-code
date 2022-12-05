@@ -1,5 +1,11 @@
 defmodule AdventOfCode.Year2022.Day05Parser do
+  @moduledoc """
+    A normal Parser for day 05 Solution.
+  """
   defmodule Command do
+    @moduledoc """
+      A module to make structs for commands
+    """
     defstruct [:move, :from, :to]
 
     def new(["move", move, "from", from, "to", to]) do
@@ -11,9 +17,6 @@ defmodule AdventOfCode.Year2022.Day05Parser do
     end
   end
 
-  @moduledoc """
-    A normal Parser for day 05 Solution.
-  """
   alias AdventOfCode.Utils.Matrix
 
   def run do
@@ -25,32 +28,16 @@ defmodule AdventOfCode.Year2022.Day05Parser do
   end
 
   def parse_stacks(stacks) do
-    # stacks
-    # |> String.trim()
-    # |> String.split("\n")
-    # |> Enum.map(&parse_stack_line/1)
-    # |> Enum.drop(-1)
-    # |> Matrix.new()
-    # |> Matrix.transpose()
-    # |> filter_brackets_and_empty_spaces()
-
     stacks
     |> String.split("\n", trim: true)
+    |> Enum.map(&parse_stack_line/1)
     |> Enum.drop(-1)
-    |> Enum.flat_map(fn line ->
-      line |> String.graphemes() |> Enum.drop(1) |> Enum.take_every(4) |> Enum.with_index(1)
-    end)
-    |> Enum.group_by(&elem(&1, 1))
-    |> Enum.map(fn {column, vals} ->
-      {column, vals |> Enum.map(&elem(&1, 0)) |> Enum.reject(&Kernel.==(&1, " "))}
-    end)
-    |> Map.new()
+    |> Matrix.new()
+    |> Matrix.transpose()
+    |> filter_brackets_and_empty_spaces()
   end
 
-  def parse_stack_line(line) do
-    line
-    |> String.split("")
-  end
+  def parse_stack_line(line), do: line |> String.split("")
 
   def parse_commands(commands) do
     commands
@@ -71,14 +58,13 @@ defmodule AdventOfCode.Year2022.Day05Parser do
     data
     |> Enum.map(fn stack_line ->
       stack_line
-      |> Enum.filter(fn str -> str != "[" end)
-      |> Enum.filter(fn str -> str != "]" end)
-      |> Enum.filter(fn str -> str != " " end)
-      |> Enum.filter(fn str -> str != "" end)
+      |> Enum.reject(&rejector/1)
     end)
     |> Enum.filter(fn list -> list != [] end)
     |> Enum.with_index(1)
     |> Enum.map(fn {k, v} -> {v, k} end)
     |> Map.new()
   end
+
+  def rejector(str), do: str in ["[", "]", " ", ""]
 end
