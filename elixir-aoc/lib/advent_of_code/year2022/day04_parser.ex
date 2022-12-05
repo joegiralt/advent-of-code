@@ -1,6 +1,6 @@
 defmodule AdventOfCode.Year2022.Day04Parser do
   @moduledoc """
-    A normal Parser for day 03 Solution.
+    A normal Parser for day 04 Solution.
   """
   def run do
     AdventOfCode.Input.get!(4, 2022)
