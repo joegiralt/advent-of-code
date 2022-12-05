@@ -58,6 +58,7 @@ defmodule AdventOfCode.Year2022.Day05Parser do
     |> Enum.map(fn cmd ->
       cmd |> String.split(" ")
     end)
+    |> Enum.drop(-1)
     |> Enum.map(&Command.new/1)
   end
 
