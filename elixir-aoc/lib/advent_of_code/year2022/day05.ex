@@ -24,13 +24,20 @@ defmodule AdventOfCode.Year2022.Day05 do
 
   def reduce_cmds({cargo_stacks, []}, _part), do: cargo_stacks
 
-  def reduce_cmds({cargo_stacks, commands}, part) do
-    [cmd | rest_of_commands] = commands
-
+  def reduce_cmds({cargo_stacks, [cmd | rest_of_commands] = _commands}, part) do
     {modded_cargo, cargo_to_move} =
-      take(cargo_stacks[cmd.from_cargo_location], [], cmd.amount_to_move)
+      take(
+        cargo_stacks[cmd.from_cargo_location],
+        [],
+        cmd.amount_to_move
+      )
 
-    cargo_to_stack = add(part, cargo_to_move, cargo_stacks[cmd.to_cargo_location])
+    cargo_to_stack =
+      add(
+        part,
+        cargo_to_move,
+        cargo_stacks[cmd.to_cargo_location]
+      )
 
     newly_mapped_cargo_stacks =
       cargo_stacks
