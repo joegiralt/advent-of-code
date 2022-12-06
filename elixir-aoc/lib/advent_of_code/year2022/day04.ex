@@ -16,6 +16,6 @@ defmodule AdventOfCode.Year2022.Day04 do
     |> Enum.count()
   end
 
-  def has_inclusive_sections([{x, y}, {a, b}]), do: (x <= a && y >= b) || (a <= x && b >= y)
-  def has_over_lapping_sections([{x, y}, {a, b}]), do: x <= a && a <= y
+  defp has_inclusive_sections([{x, y}, {a, b}]), do: (x <= a && y >= b) || (a <= x && b >= y)
+  defp has_over_lapping_sections([{x, y}, {a, b}]), do: x <= a && a <= y
 end

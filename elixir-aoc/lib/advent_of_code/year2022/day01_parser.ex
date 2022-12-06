@@ -20,7 +20,7 @@ defmodule AdventOfCode.Year2022.Day01Parser do
     parser.(input)
   end
 
-  def delimiter() do
+  defp delimiter() do
     satisfy(
       sequence([new_line(), new_line()]),
       fn chars -> chars != [] end
@@ -28,16 +28,16 @@ defmodule AdventOfCode.Year2022.Day01Parser do
     |> map(fn _ -> :delimiter end)
   end
 
-  def calorie() do
-    satisfy(
-      sequence([numeric_value(), new_line()]),
-      fn chars -> chars != [] end
-    )
-  end
+  # def calorie() do
+  #   satisfy(
+  #     sequence([numeric_value(), new_line()]),
+  #     fn chars -> chars != [] end
+  #   )
+  # end
 
-  def all_elves, do: separated_list(elf(), delimiter())
+  defp all_elves, do: separated_list(elf(), delimiter())
 
-  def elf do
+  defp elf do
     separated_list(numeric_value(), new_line())
     |> map(fn char_lists_elf_calories ->
       char_lists_elf_calories

@@ -20,11 +20,11 @@ defmodule AdventOfCode.Year2022.Day02 do
     |> Enum.sum()
   end
 
-  def create_hand_shapes([a, b]), do: {hand(a), hand(b)}
+  defp create_hand_shapes([a, b]), do: {hand(a), hand(b)}
 
-  def collect_scores({a, b}), do: [score_outcome(a), score_shape(b)]
+  defp collect_scores({a, b}), do: [score_outcome(a), score_shape(b)]
 
-  def new_strategy(hands) do
+  defp new_strategy(hands) do
     case hands do
       # handles tie
       [a, "Y"] ->
@@ -38,7 +38,7 @@ defmodule AdventOfCode.Year2022.Day02 do
     end
   end
 
-  def find_winner(shape) do
+  defp find_winner(shape) do
     case shape do
       :rock -> :paper
       :paper -> :scissors
@@ -46,7 +46,7 @@ defmodule AdventOfCode.Year2022.Day02 do
     end
   end
 
-  def find_loser(shape) do
+  defp find_loser(shape) do
     case shape do
       :paper -> :rock
       :scissors -> :paper
@@ -54,7 +54,7 @@ defmodule AdventOfCode.Year2022.Day02 do
     end
   end
 
-  def hand(letter) do
+  defp hand(letter) do
     case letter do
       "A" -> :rock
       "B" -> :paper
@@ -65,7 +65,7 @@ defmodule AdventOfCode.Year2022.Day02 do
     end
   end
 
-  def eval_game(game) do
+  defp eval_game(game) do
     case game do
       {:paper, :rock} -> {:lose, :rock}
       {:scissors, :rock} -> {:win, :rock}
@@ -77,7 +77,7 @@ defmodule AdventOfCode.Year2022.Day02 do
     end
   end
 
-  def score_outcome(outcome) do
+  defp score_outcome(outcome) do
     case outcome do
       :win -> 6
       :lose -> 0
@@ -85,7 +85,7 @@ defmodule AdventOfCode.Year2022.Day02 do
     end
   end
 
-  def score_shape(shape) do
+  defp score_shape(shape) do
     case shape do
       :rock -> 1
       :paper -> 2

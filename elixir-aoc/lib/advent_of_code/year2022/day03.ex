@@ -31,22 +31,22 @@ defmodule AdventOfCode.Year2022.Day03 do
     |> Enum.sum()
   end
 
-  def score_priority_item(ruck_item) do
+  defp score_priority_item(ruck_item) do
     @priority_mapping[hd(ruck_item)]
   end
 
-  def find_intersections_in_elf_group([a, b, c]) do
+  defp find_intersections_in_elf_group([a, b, c]) do
     [a, b, c]
     |> intersection_all()
     |> Enum.to_list()
   end
 
-  def find_intersections_in_ruck_sack_sections({front_of_ruck, back_of_ruck}) do
+  defp find_intersections_in_ruck_sack_sections({front_of_ruck, back_of_ruck}) do
     MapSet.intersection(front_of_ruck, back_of_ruck)
     |> Enum.to_list()
   end
 
-  def find_unions_in_ruck_sack_sections({front_of_ruck, back_of_ruck}) do
+  defp find_unions_in_ruck_sack_sections({front_of_ruck, back_of_ruck}) do
     MapSet.union(front_of_ruck, back_of_ruck)
   end
 end

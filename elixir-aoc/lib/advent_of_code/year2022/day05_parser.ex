@@ -27,7 +27,7 @@ defmodule AdventOfCode.Year2022.Day05Parser do
     {parse_stacks(stacks), parse_commands(commands)}
   end
 
-  def parse_stacks(stacks) do
+  defp parse_stacks(stacks) do
     stacks
     |> String.split("\n", trim: true)
     |> Enum.map(&parse_stack_line/1)
@@ -37,9 +37,9 @@ defmodule AdventOfCode.Year2022.Day05Parser do
     |> filter_brackets_and_empty_spaces()
   end
 
-  def parse_stack_line(line), do: line |> String.split("")
+  defp parse_stack_line(line), do: line |> String.split("")
 
-  def parse_commands(commands) do
+  defp parse_commands(commands) do
     commands
     |> String.split("\n")
     |> Enum.map(fn cmd ->
@@ -49,22 +49,19 @@ defmodule AdventOfCode.Year2022.Day05Parser do
     |> Enum.map(&Command.new/1)
   end
 
-  def remove_first_line(%Matrix{data: data}) do
+  defp remove_first_line(%Matrix{data: data}) do
     [_head | tail] = data
     Matrix.new(tail)
   end
 
-  def filter_brackets_and_empty_spaces(%Matrix{data: data}) do
+  defp filter_brackets_and_empty_spaces(%Matrix{data: data}) do
     data
-    |> Enum.map(fn stack_line ->
-      stack_line
-      |> Enum.reject(&rejector/1)
-    end)
-    |> Enum.filter(fn list -> list != [] end)
+    |> Enum.map(fn stack_line -> stack_line |> Enum.reject(&rejector/1) end)
+    |> Enum.reject(fn list -> list == [] end)
     |> Enum.with_index(1)
     |> Enum.map(fn {k, v} -> {v, k} end)
     |> Map.new()
   end
 
-  def rejector(str), do: str in ["[", "]", " ", ""]
+  defp rejector(str), do: str in ["[", "]", " ", ""]
 end
