@@ -17,8 +17,8 @@ defmodule AdventOfCode.Year2022.Day03Parser do
   end
 
   defp convert_to_charlists({front_of_ruck, back_of_ruck}) do
-    front_set = front_of_ruck |> to_char_list |> MapSet.new()
-    back_set = back_of_ruck |> to_char_list |> MapSet.new()
+    front_set = front_of_ruck |> to_charlist |> MapSet.new()
+    back_set = back_of_ruck |> to_charlist |> MapSet.new()
     {front_set, back_set}
   end
 end

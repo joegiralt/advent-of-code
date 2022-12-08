@@ -72,7 +72,7 @@ defmodule AdventOfCode.Input do
     |> Path.expand()
   end
 
-  defp default_year do
+  def default_year do
     case :calendar.local_time() do
       {{y, 12, _}, _} -> y
       {{y, _, _}, _} -> y - 1

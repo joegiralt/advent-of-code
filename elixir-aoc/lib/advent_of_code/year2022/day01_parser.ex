@@ -16,7 +16,7 @@ defmodule AdventOfCode.Year2022.Day01Parser do
   end
 
   defp parse(input) do
-    parser = all_elves
+    parser = all_elves()
     parser.(input)
   end
 
